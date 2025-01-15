@@ -1,88 +1,80 @@
 class Personaje:
-    #Atributos de la clase 
-    #nombre = 'Default'
-    #fuerza = 0
-    #inteligencia = 0
-    #defensa = 0
-    #vida = 0
+    #Atributos de la clase
+    # nombre="Default"
+    # fuerza=0
+    # inteligencia=0
+    # vida=0
+    # defensa=0
 
-    #Constructor de la clase
-    def __init__(self, nombre, fuerza, inteligencia, defensa, vida):
-        self.__nombre = nombre
-        self.__fuerza = fuerza
-        self.__inteligecia = inteligencia
-        self.__defensa = defensa
-        self.__vida = vida
-    #¿Qué significa self? Referencia al mismo objeto.
-    #¿Qué es init? Constructor que inicializa el atributo del objeto
-    #¿Por qué empieza con doble guión bajo? Porque es método mágico. Dunder
-    #¿En qué momento se ejecuta el método init? Cuando se crea un objeto
-    #snake_case y CamelCase
+#Constructor
+    def __init__(self,nombre,fuerza,inteligencia,vida,defensa):
+        self.nombre=nombre
+        self.fuerza=fuerza
+        self.inteligencia=inteligencia
+        self.vida=vida
+        self.defensa=defensa
+# ¿Qué significa self? Referencia al mismo objeto. Es decir, el objeto que estamos creando.
+# ¿Qué es init? Es el constructor que inicializa el atributo del objeto.
+# ¿Por qué empieza con doble guion bajo? Porque es un método dunder.
+# ¿Qué es dunder? Es un término  para referirse a los métodos especiales en Python que comienzan y terminan con doble guion bajo (__).
+# ¿En qué momento se ejecuta el método init? Cuando se crea el objeto.
+#snakecase y camelCase
     def imprimir_atributos(self):
-        print(self.__nombre)
-        print("-Fuerza:",self.__fuerza)
-        print("-Inteligencia:",self.__inteligecia)
-        print("-Defensa:",self.__defensa)
-        print("-Vida:",self.__vida)
-        
-    def subir_nivel(self, fuerza, inteligencia, defensa):
-        self.__fuerza = self.__fuerza + fuerza
-        #self.__fuerza += fuerza
-        self.__inteligecia = self.__inteligecia + inteligencia
-        self.__defensa = self.__defensa + defensa
-        
-    def esta_vivo(self):
-        return self.__vida > 0
+        print(self.nombre)
+        print("-Fuerza",self.fuerza)
+        print("-Inteligencia",self.inteligencia)
+        print("-Vida",self.vida)
+        print("-Defensa",self.defensa)
+
+    def subir_nivel(self,fuerza,inteligencia,vida,defensa):
+        self.fuerza+=fuerza
+        self.inteligencia+=inteligencia
+        self.vida+=vida
+        self.defensa+=defensa
+
+    def está_vivo(self):
+        return self.vida > 0
     
-    def __morir(self):
-        self.__vida = 0
-        print(self.__nombre,"ha muerto")
-        #return self.__vida <= 0
-        
-    def dañar(self, enemigo):
-        return max(0,self.__fuerza - enemigo.__defensa)
+    def morir(self):
+        self.vida=0
+        print(self.nombre,"ha muerto")
+
+    def dañar(self,enemigo):
+        return self.fuerza - enemigo.defensa
     
-    def atacar(self, enemigo):
-        daño=self.dañar(enemigo)
-        enemigo.__vida = max(0,enemigo.__vida - daño)
-        print(self.__nombre, "Ha realizado", daño, "puntos de daño a", enemigo.__nombre)
-        print("Vida de", enemigo.__nombre, "es", enemigo.__vida)
+    def atacar(self,enemigo):
+        daño = self.dañar(enemigo)
+        enemigo.vida -= daño
+        print(self.nombre,"Ha hecho",daño,"puntos de daño a",enemigo.nombre)
+        print("Vida de", enemigo.nombre, "es", enemigo.vida)
 
-    def get_fuerza(self):
-        return self.__fuerza
+class Guerrero(Personaje):
+    pass
+ 
+tlatoani = Guerrero("Apocalipto",50,50,30,100)
 
-    def set_fuerza(self, fuerza):
-        if fuerza < 0:
-            print("Error, valor negativo")
-        else:
-            self.__fuerza = fuerza
-
-#Variable del constructor de la clase
-mi_personaje = Personaje("Dante",1000, 3,70,100)
+#Variable del constructo vacio de la clase
+# mi_personaje = Personaje("Diabeto",30,10,40,15)
 # mi_personaje.imprimir_atributos()
-mi_enemigo = Personaje("Vergil",70,30,70,100)
-#mi_personaje.__fuerza = 0
-#mi_personaje.imprimir_atributos()
-
+# mi_enemigo=Personaje("El mamo",10,30,40,15)
 # mi_personaje.atacar(mi_enemigo)
 # mi_enemigo.imprimir_atributos()
-mi_personaje.set_fuerza(-5)
-print(mi_personaje.get_fuerza())
 
 
-#print(mi_personaje.dañar(mi_enemigo))
-#print(mi_personaje.esta_vivo())
-#mi_personaje.subir_nivel(10,1,5)
-#print("---------------------")
-#mi_personaje.imprimir_atributos()
-#dmi_personaje.imprimir_atributos
-# mi_personaje.__nombre = "ChemaFighter"
-# mi_personaje.__fuerza = 30
-# mi_personaje.__inteligecia = 12
-# mi_personaje.__defensa = 28
-# mi_personaje.__vida = 3
-# print("El nombre del personaje es ",mi_personaje.__nombre)
-# print("La fuerza del personaje es ",mi_personaje.__fuerza)
-# print("La inteligencia del personaje es ",mi_personaje.__inteligecia)
-# print("La defensa del personaje es ",mi_personaje.__defensa)
-# print("La vida del personaje es ",mi_personaje.__vida)
+# print(mi_personaje.dañar(mi_enemigo))
+# print(mi_personaje.está_vivo())
+# mi_personaje.subir_nivel(0,5,20,10)
+# print("--------------------")
+# mi_personaje.imprimir_atributos()
+# mi_personaje.nombre="Diabeto"
+# mi_personaje.fuerza=30
+# mi_personaje.inteligencia=10
+# mi_personaje.vida=40
+# mi_personaje.defensa=15 
+
+# print('el nombre del personaje es: ',mi_personaje.nombre)
+# print('la fuerza del personaje es: ',mi_personaje.fuerza)
+# print('la inteligencia del personaje es: ',mi_personaje.inteligencia)
+# print('la vida del personaje es: ',mi_personaje.vida)
+# print('la defensa del personaje es: ',mi_personaje.defensa)
+ 
