@@ -48,12 +48,17 @@ class Personaje:
         print(self.nombre,"Ha hecho",daño,"puntos de daño a",enemigo.nombre)
         print("Vida de", enemigo.nombre, "es", enemigo.vida)
 
+class Guerrero(Personaje):
+    pass
+ 
+tlatoani = Guerrero("Apocalipto",50,50,30,100)
+
 #Variable del constructo vacio de la clase
-mi_personaje = Personaje("Diabeto",30,10,40,15)
-mi_personaje.imprimir_atributos()
-mi_enemigo=Personaje("El mamo",10,30,40,15)
-mi_personaje.atacar(mi_enemigo)
-mi_enemigo.imprimir_atributos()
+# mi_personaje = Personaje("Diabeto",30,10,40,15)
+# mi_personaje.imprimir_atributos()
+# mi_enemigo=Personaje("El mamo",10,30,40,15)
+# mi_personaje.atacar(mi_enemigo)
+# mi_enemigo.imprimir_atributos()
 
 
 # print(mi_personaje.dañar(mi_enemigo))
