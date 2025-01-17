@@ -49,9 +49,73 @@ class Personaje:
         print("Vida de", enemigo.nombre, "es", enemigo.vida)
 
 class Guerrero(Personaje):
-    pass
- 
-tlatoani = Guerrero("Apocalipto",50,50,30,100)
+    #Sobreescribir constructor
+    def __init__(self,nombre,fuerza,inteligencia,vida,defensa,espada):
+        super().__init__(nombre,fuerza,inteligencia,vida,defensa)
+        self.espada = espada
+
+    #Sobreescribir impresión
+    def imprimir_atributos(self):
+        super().imprimir_atributos()
+        print("-Espada",self.espada)
+
+    def elegir_arma(self):
+        opcion = int(input("Elige tu arma:\n(1) Lanza de obsiniada, daño 10\n(2) Lanza de chaya, daño 6\n>>>>>>>"))
+        if opcion == 1:
+            self.espada = 10
+        elif opcion == 2:
+            self.espada = 5
+        else:
+            print("Opcion no valida")
+            self.elegir_arma()
+
+    #Sobreescribir cálculo de daño
+    def dañar(self, enemigo):
+        return self.fuerza * self.espada - enemigo.defensa
+    
+class Mago(Personaje):
+
+    #Sobreescribir constructor
+    def __init__(self,nombre,fuerza,inteligencia,vida,defensa,libro):
+        super().__init__(nombre,fuerza,inteligencia,vida,defensa)
+        self.libro = libro
+
+    #Sobreescribir impresión
+    def imprimir_atributos(self):
+     super().imprimir_atributos()         
+     print("-Libro",self.libro)
+
+    def elegir_arma(self):
+        opcion = int(input("Elige tu arma:\n(1) Libro de hechizos, daño 20\n(2) Bastón de fuego, daño 15\n>>>>>>>"))
+        if opcion == 1:
+            self.libro = 20
+        elif opcion == 2:
+            self.libro = 15
+        else:
+            print("Opcion no valida")
+            self.elegir_arma()
+
+    #Sobreescribir cálculo de daño
+    def dañar(self, enemigo):
+        return self.inteligencia * self.libro - enemigo.defensa
+
+Sparky = Personaje("Sparky",20,30,15,10) 
+tlatoani = Guerrero("Apocalipto",50,50,30,100,5)
+Hermes = Mago("Hermes",20,30,15,100,15)
+
+#Ataques masivos
+Sparky.atacar(tlatoani)
+tlatoani.atacar(Hermes)
+Hermes.atacar(Sparky)
+
+#Imprimir atributos antes de la tragedia
+Sparky.imprimir_atributos()
+tlatoani.imprimir_atributos()
+Hermes.imprimir_atributos()
+
+# tlatoani.elegir_arma()
+# Hermes.elegir_arma()
+
 
 #Variable del constructo vacio de la clase
 # mi_personaje = Personaje("Diabeto",30,10,40,15)
